@@ -4,11 +4,20 @@ fn main() {
 
 fn part1(input: String) -> u32 {
     println!("{input}");
-    
-    input.lines().map(|line| {
-        let numbers: Vec<_> = line.chars().filter(|c| c.is_ascii_digit()).map(|c|c.to_digit(10).unwrap_or(0)).collect::<Vec<_>>();
-    (numbers[0] * 10) + numbers.last().unwrap() 
-    }).sum()
+
+    input
+        .lines()
+        .map(|line| {
+            let numbers: Vec<_> = line
+                .chars()
+                .filter(|c| c.is_ascii_digit())
+                .map(|c| c.to_digit(10).unwrap_or(0))
+                .collect::<Vec<_>>();
+
+            // Get the first and last number
+            (numbers[0] * 10) + numbers[numbers.len() - 1]
+        })
+        .sum()
 }
 
 fn part2(input: String) -> u32 {
@@ -57,4 +66,3 @@ mod tests {
         }
     }
 }
-
