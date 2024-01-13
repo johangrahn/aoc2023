@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use std::fs::read_to_string;
 mod day1;
+mod day2;
 
 use crate::day1::day1;
 
