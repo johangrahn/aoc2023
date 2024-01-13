@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 fn main() {
     println!("Hello, world!");
 }
@@ -21,7 +23,33 @@ fn part1(input: String) -> u32 {
 }
 
 fn part2(input: String) -> u32 {
-    0
+    input
+        .lines()
+        .map(|line| {
+            let numbers: Vec<_> = line
+                .chars()
+                .enumerate()
+                .map(|(index, c)| match c {
+                    c if c.is_ascii_digit() => c.to_digit(10).unwrap_or(0),
+                    _ => match &line[index..] {
+                        s if s.starts_with("one") => 1,
+                        s if s.starts_with("two") => 2,
+                        s if s.starts_with("three") => 3,
+                        s if s.starts_with("four") => 4,
+                        s if s.starts_with("five") => 5,
+                        s if s.starts_with("six") => 6,
+                        s if s.starts_with("seven") => 7,
+                        s if s.starts_with("eight") => 8,
+                        s if s.starts_with("nine") => 9,
+                        _ => 0,
+                    },
+                })
+                .filter(|&num| num > 0)
+                .collect();
+            println!("{numbers:?}");
+            (numbers[0] * 10) + numbers[numbers.len() - 1]
+        })
+        .sum()
 }
 
 #[cfg(test)]
