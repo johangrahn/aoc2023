@@ -8,7 +8,6 @@ fn part1(input: &str) -> u32 {
         .enumerate()
         .map(|(index, line)| {
             let game = line.split(':').last().unwrap();
-            println!("Game: {game}");
             let false_games = game
                 .split([';', ','])
                 .map(|rev| rev.trim())
@@ -17,17 +16,13 @@ fn part1(input: &str) -> u32 {
                     let number: usize = s[0].parse().unwrap();
                     let t = s[1];
 
-                    //println!("Number: {number}, type: {t}");
-
                     let mapped_value = config.get(t).unwrap();
-                    println!("Number: {number}, type: {t}, matching with: {mapped_value}");
                     number <= *mapped_value
                 })
                 .filter(|v| !(*v))
                 .collect::<Vec<_>>();
 
             if false_games.is_empty() {
-                println!("Game: {}", index + 1);
                 index as u32 + 1
             } else {
                 0
@@ -46,5 +41,12 @@ mod part1 {
         let input = read_to_string("input/day2_example.txt").unwrap();
         let result = part1(&input);
         assert_eq!(result, 8)
+    }
+
+    #[test]
+    fn test_real_input() {
+        let input = read_to_string("input/day2.txt").unwrap();
+        let result = part1(&input);
+        assert_eq!(result, 2207)
     }
 }
