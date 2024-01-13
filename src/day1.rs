@@ -1,3 +1,7 @@
+pub fn day1(input: &str) -> (u32, u32) {
+    (part1(input), part2(input))
+}
+
 pub fn part1(input: &str) -> u32 {
     input
         .lines()
