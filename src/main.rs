@@ -2,9 +2,13 @@ fn main() {
     println!("Hello, world!");
 }
 
-fn part1(input: String) -> u64 {
+fn part1(input: String) -> u32 {
     println!("{input}");
-    0
+    
+    input.lines().map(|line| {
+        let numbers: Vec<_> = line.chars().filter(|c| c.is_ascii_digit()).map(|c|c.to_digit(10).unwrap_or(0)).collect::<Vec<_>>();
+    (numbers[0] * 10) + numbers.last().unwrap() 
+    }).sum()
 
 }
 
