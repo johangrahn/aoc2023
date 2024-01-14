@@ -1,5 +1,9 @@
 use std::collections::HashMap;
 
+pub fn day2(input: &str) -> (u32, u32) {
+    (part1(input), part2(input))
+}
+
 fn part1(input: &str) -> u32 {
     let config = HashMap::from([("red", 12), ("blue", 14), ("green", 13)]);
 
